@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ROYAL MOD | 8 Ball</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at top, #24104a 0%, #090909 45%, #050505 100%);
+    color: white;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 620px;
+    margin: auto;
+    padding: 25px 16px 50px;
+}
+
+/* HEADER */
+
+.header {
+    text-align: center;
+    padding: 15px 0 28px;
+}
+
+.logo {
+    width: 115px;
+    height: 115px;
+    object-fit: contain;
+    border-radius: 50%;
+    display: block;
+    margin: auto;
+    box-shadow: 0 0 30px rgba(160, 80, 255, 0.35);
+}
+
+.header h1 {
+    margin-top: 15px;
+    font-size: 34px;
+    letter-spacing: 3px;
+}
+
+.header p {
+    color: #aaa;
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+/* CARDS */
+
+.card {
+    background: rgba(20,20,20,0.94);
+    border: 1px solid #303030;
+    border-radius: 18px;
+    padding: 22px;
+    margin-bottom: 18px;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+}
+
+.card h2 {
+    font-size: 20px;
+    margin-bottom: 9px;
+}
+
+.card p {
+    color: #aaa;
+    font-size: 14px;
+    line-height: 1.55;
+    margin-bottom: 15px;
+}
+
+/* LOCKED */
+
+.locked {
+    opacity: 0.42;
+    pointer-events: none;
+    filter: grayscale(0.5);
+}
+
+/* BUTTONS */
+
+button {
+    width: 100%;
+    border: 0;
+    border-radius: 11px;
+    padding: 14px;
+    margin-top: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: translateY(-1px);
+}
+
+.taskBtn {
+    background: linear-gradient(135deg, #ff1744, #ff5252);
+    color: white;
+}
+
+.verifyBtn {
+    background: #292929;
+    color: white;
+}
+
+.verifyBtn:disabled {
+    background: #181818;
+    color: #666;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* TIMER */
+
+.timer {
+    text-align: center;
+    color: #ffc107;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 12px;
+}
+
+.status {
+    text-align: center;
+    color: #00e676;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* PASSWORD */
+
+.passwordBox {
+    display: none;
+}
+
+.passwordInput {
+    width: 100%;
+    padding: 14px;
+    border-radius: 11px;
+    border: 1px solid #444;
+    background: #090909;
+    color: white;
+    font-size: 16px;
+    outline: none;
+}
+
+.passwordInput:focus {
+    border-color: #9c4dff;
+}
+
+.passwordBtn {
+    background: linear-gradient(135deg, #7c4dff, #b44cff);
+    color: white;
+}
+
+.error {
+    color: #ff5252;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* DOWNLOAD */
+
+.downloadBox {
+    display: none;
+    border-color: #00c853;
+}
+
+.downloadBtn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 11px;
+    background: linear-gradient(135deg, #00c853, #00a844);
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+}
+
+.downloadBtn:hover {
+    transform: translateY(-1px);
+}
+
+/* FOOTER */
+
+.footer {
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+    margin-top: 30px;
+}
+
+.stepNumber {
+    color: #ff4081;
+}
+</style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <img
+            src="royal-mod.png"
+            class="logo"
+            alt="ROYAL MOD"
+        >
+
+        <h1>ROYAL MOD</h1>
+
+        <p>
+            Complete all tasks to unlock your download
+        </p>
+
+    </div>
+
+
+    <!-- STEP 1 -->
+
+    <div class="card" id="card1">
+
+        <h2>
+            <span class="stepNumber">STEP 1</span>
+            — YouTube
+        </h2>
+
+        <p>
+            Subscribe to our first YouTube channel.
+            After opening the channel, return here and verify.
+        </p>
+
+        <button
+            class="taskBtn"
+            onclick="openTask1()"
+            id="taskButton1"
+        >
+            🔴 Subscribe Channel 1
+        </button>
+
+        <button
+            class="verifyBtn"
+            id="verify1"
+            onclick="verifyTask(1)"
+            disabled
+        >
+            🔒 Verify Step 1
+        </button>
+
+        <div class="timer" id="timer1"></div>
+
+        <div class="status" id="status1"></div>
+
+    </div>
+
+
+    <!-- STEP 2 -->
+
+    <div class="card locked" id="card2">
+
+        <h2>
+            <span class="stepNumber">STEP 2</span>
+            — YouTube
+        </h2>
+
+        <p>
+            Subscribe to the second ROYAL MOD YouTube channel.
+            Then return here and verify.
+        </p>
+
+        <button
+            class="taskBtn"
+            onclick="openTask2()"
+        >
+            🔴 Subscribe Channel 2
+        </button>
+
+        <button
+            class="verifyBtn"
+            id="verify2"
+            onclick="verifyTask(2)"
+            disabled
+        >
+            🔒 Verify Step 2
+        </button>
+
+        <div class="timer" id="timer2"></div>
+
+        <div class="status" id="status2"></div>
+
+    </div>
+
+
+    <!-- STEP 3 -->
+
+    <div class="card locked" id="card3">
+
+        <h2>
+            <span class="stepNumber">STEP 3</span>
+            — Instagram
+        </h2>
+
+        <p>
+            Follow ROYAL MOD on Instagram.
+            Then return here and verify.
+        </p>
+
+        <button
+            class="taskBtn"
+            onclick="openTask3()"
+        >
+            🟣 Follow Instagram
+        </button>
+
+        <button
+            class="verifyBtn"
+            id="verify3"
+            onclick="verifyTask(3)"
+            disabled
+        >
+            🔒 Verify Step 3
+        </button>
+
+        <div class="timer" id="timer3"></div>
+
+        <div class="status" id="status3"></div>
+
+    </div>
+
+
+    <!-- PASSWORD -->
+
+    <div class="card passwordBox" id="passwordBox">
+
+        <h2>🔐 Final Verification</h2>
+
+        <p>
+            All 3 tasks are completed.
+            Enter the password to unlock the download.
+        </p>
+
+        <input
+            type="password"
+            id="password"
+            class="passwordInput"
+            placeholder="Enter password"
+            autocomplete="off"
+        >
+
+        <button
+            class="passwordBtn"
+            onclick="checkPassword()"
+        >
+            🔓 Unlock Download
+        </button>
+
+        <div
+            class="error"
+            id="passwordError"
+        ></div>
+
+    </div>
+
+
+    <!-- DOWNLOAD -->
+
+    <div class="card downloadBox" id="downloadBox">
+
+        <h2>🎉 Download Unlocked</h2>
+
+        <p>
+            Your ROYAL MOD 8 Ball file is ready.
+        </p>
+
+        <a
+            class="downloadBtn"
+            href="https://github.com/royal-mod/8-Ball-Auto-aim---play/releases/download/v1.0/Royal.Mod.8.Ball.zip"
+            target="_blank"
+            rel="noopener"
+        >
+            ⬇️ Download Royal Mod 8 Ball
+        </a>
+
+    </div>
+
+
+    <div class="footer">
+        © 2026 ROYAL MOD
+    </div>
+
+</div>
+
+
+
+<script>
+
+/* =========================================
+   SOCIAL LINKS
+========================================= */
+
+const CHANNEL_1 =
+"https://www.youtube.com/@Royal_mod-89";
+
+const CHANNEL_2 =
+"https://youtube.com/@royalmod.2";
+
+const INSTAGRAM =
+"https://www.instagram.com/royalmod_89/";
+
+
+/* =========================================
+   STEP 1
+========================================= */
+
+function openTask1() {
+
+    window.open(CHANNEL_1, "_blank");
+
+    startTimer(1);
+}
+
+
+/* =========================================
+   STEP 2
+========================================= */
+
+function openTask2() {
+
+    window.open(CHANNEL_2, "_blank");
+
+    startTimer(2);
+}
+
+
+/* =========================================
+   STEP 3
+========================================= */
+
+function openTask3() {
+
+    window.open(INSTAGRAM, "_blank");
+
+    startTimer(3);
+}
+
+
+/* =========================================
+   10 SECOND TIMER
+========================================= */
+
+function startTimer(step) {
+
+    const verifyButton =
+        document.getElementById("verify" + step);
+
+    const timer =
+        document.getElementById("timer" + step);
+
+    let seconds = 10;
+
+    verifyButton.disabled = true;
+
+    verifyButton.innerHTML =
+        "⏳ Please wait...";
+
+    timer.innerHTML =
+        "Please wait " + seconds + " seconds";
+
+    const interval = setInterval(function() {
+
+        seconds--;
+
+        if (seconds > 0) {
+
+            timer.innerHTML =
+                "Please wait " + seconds + " seconds";
+
+        } else {
+
+            clearInterval(interval);
+
+            timer.innerHTML =
+                "✅ Verification available";
+
+            verifyButton.disabled = false;
+
+            verifyButton.innerHTML =
+                "✅ Verify Step " + step;
+        }
+
+    }, 1000);
+}
+
+
+/* =========================================
+   VERIFY
+========================================= */
+
+function verifyTask(step) {
+
+    document.getElementById("status" + step).innerHTML =
+        "✅ Step " + step + " completed";
+
+    document.getElementById("verify" + step).disabled = true;
+
+    document.getElementById("verify" + step).innerHTML =
+        "✅ Completed";
+
+
+    /* STEP 1 → STEP 2 */
+
+    if (step === 1) {
+
+        document
+            .getElementById("card2")
+            .classList.remove("locked");
+
+        document
+            .getElementById("card2")
+            .scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+    }
+
+
+    /* STEP 2 → STEP 3 */
+
+    if (step === 2) {
+
+        document
+            .getElementById("card3")
+            .classList.remove("locked");
+
+        document
+            .getElementById("card3")
+            .scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+    }
+
+
+    /* STEP 3 → PASSWORD */
+
+    if (step === 3) {
+
+        document
+            .getElementById("passwordBox")
+            .style.display = "block";
+
+        document
+            .getElementById("passwordBox")
+            .scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+    }
+}
+
+
+/* =========================================
+   PASSWORD
+========================================= */
+
+function checkPassword() {
+
+    const password =
+        document.getElementById("password").value;
+
+    const error =
+        document.getElementById("passwordError");
+
+    if (password === "1640") {
+
+        error.innerHTML = "";
+
+        document
+            .getElementById("passwordBox")
+            .style.display = "none";
+
+        document
+            .getElementById("downloadBox")
+            .style.display = "block";
+
+        document
+            .getElementById("downloadBox")
+            .scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+    } else {
+
+        error.innerHTML =
+            "❌ Incorrect password";
+
+    }
+}
+
+
+/* =========================================
+   ENTER KEY FOR PASSWORD
+========================================= */
+
+document
+    .getElementById("password")
+    .addEventListener("keydown", function(event) {
+
+        if (event.key === "Enter") {
+
+            checkPassword();
+
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
