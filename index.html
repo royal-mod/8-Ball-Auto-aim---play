@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ROYAL MOD | 8 Ball</title>
+<title>ROYAL MOD</title>
 
 <style>
 * {
@@ -57,7 +57,7 @@ body {
     font-size: 14px;
 }
 
-/* CARDS */
+/* CARD */
 
 .card {
     background: rgba(20,20,20,0.94);
@@ -213,7 +213,6 @@ button:hover {
 </style>
 </head>
 
-
 <body>
 
 <div class="container">
@@ -248,36 +247,41 @@ button:hover {
 
         <p>
             Subscribe to our first YouTube channel.
-            After opening the channel, return here and verify.
+            After subscribing, return here and verify.
         </p>
 
         <button
             class="taskBtn"
-            onclick="openTask1()"
-            id="taskButton1"
-        >
-            🔴 Subscribe Channel 1
+            onclick="openTask1()">
+            Subscribe
         </button>
 
         <button
             class="verifyBtn"
             id="verify1"
             onclick="verifyTask(1)"
-            disabled
-        >
-            🔒 Verify Step 1
+            disabled>
+            Verify
         </button>
 
-        <div class="timer" id="timer1"></div>
+        <div
+            class="timer"
+            id="timer1">
+        </div>
 
-        <div class="status" id="status1"></div>
+        <div
+            class="status"
+            id="status1">
+        </div>
 
     </div>
 
 
     <!-- STEP 2 -->
 
-    <div class="card locked" id="card2">
+    <div
+        class="card locked"
+        id="card2">
 
         <h2>
             <span class="stepNumber">STEP 2</span>
@@ -291,30 +295,36 @@ button:hover {
 
         <button
             class="taskBtn"
-            onclick="openTask2()"
-        >
-            🔴 Subscribe Channel 2
+            onclick="openTask2()">
+            Subscribe
         </button>
 
         <button
             class="verifyBtn"
             id="verify2"
             onclick="verifyTask(2)"
-            disabled
-        >
-            🔒 Verify Step 2
+            disabled>
+            Verify
         </button>
 
-        <div class="timer" id="timer2"></div>
+        <div
+            class="timer"
+            id="timer2">
+        </div>
 
-        <div class="status" id="status2"></div>
+        <div
+            class="status"
+            id="status2">
+        </div>
 
     </div>
 
 
     <!-- STEP 3 -->
 
-    <div class="card locked" id="card3">
+    <div
+        class="card locked"
+        id="card3">
 
         <h2>
             <span class="stepNumber">STEP 3</span>
@@ -328,30 +338,36 @@ button:hover {
 
         <button
             class="taskBtn"
-            onclick="openTask3()"
-        >
-            🟣 Follow Instagram
+            onclick="openTask3()">
+            Follow
         </button>
 
         <button
             class="verifyBtn"
             id="verify3"
             onclick="verifyTask(3)"
-            disabled
-        >
-            🔒 Verify Step 3
+            disabled>
+            Verify
         </button>
 
-        <div class="timer" id="timer3"></div>
+        <div
+            class="timer"
+            id="timer3">
+        </div>
 
-        <div class="status" id="status3"></div>
+        <div
+            class="status"
+            id="status3">
+        </div>
 
     </div>
 
 
     <!-- PASSWORD -->
 
-    <div class="card passwordBox" id="passwordBox">
+    <div
+        class="card passwordBox"
+        id="passwordBox">
 
         <h2>🔐 Final Verification</h2>
 
@@ -370,22 +386,23 @@ button:hover {
 
         <button
             class="passwordBtn"
-            onclick="checkPassword()"
-        >
-            🔓 Unlock Download
+            onclick="checkPassword()">
+            Unlock
         </button>
 
         <div
             class="error"
-            id="passwordError"
-        ></div>
+            id="passwordError">
+        </div>
 
     </div>
 
 
     <!-- DOWNLOAD -->
 
-    <div class="card downloadBox" id="downloadBox">
+    <div
+        class="card downloadBox"
+        id="downloadBox">
 
         <h2>🎉 Download Unlocked</h2>
 
@@ -397,9 +414,8 @@ button:hover {
             class="downloadBtn"
             href="https://github.com/royal-mod/8-Ball-Auto-aim---play/releases/download/v1.0/Royal.Mod.8.Ball.zip"
             target="_blank"
-            rel="noopener"
-        >
-            ⬇️ Download Royal Mod 8 Ball
+            rel="noopener">
+            Download
         </a>
 
     </div>
@@ -412,12 +428,11 @@ button:hover {
 </div>
 
 
-
 <script>
 
-/* =========================================
-   SOCIAL LINKS
-========================================= */
+/* ================================
+   LINKS
+================================ */
 
 const CHANNEL_1 =
 "https://www.youtube.com/@Royal_mod-89";
@@ -429,103 +444,121 @@ const INSTAGRAM =
 "https://www.instagram.com/royalmod_89/";
 
 
-/* =========================================
+/* ================================
    STEP 1
-========================================= */
+================================ */
 
 function openTask1() {
 
-    window.open(CHANNEL_1, "_blank");
+    window.open(
+        CHANNEL_1,
+        "_blank"
+    );
 
     startTimer(1);
 }
 
 
-/* =========================================
+/* ================================
    STEP 2
-========================================= */
+================================ */
 
 function openTask2() {
 
-    window.open(CHANNEL_2, "_blank");
+    window.open(
+        CHANNEL_2,
+        "_blank"
+    );
 
     startTimer(2);
 }
 
 
-/* =========================================
+/* ================================
    STEP 3
-========================================= */
+================================ */
 
 function openTask3() {
 
-    window.open(INSTAGRAM, "_blank");
+    window.open(
+        INSTAGRAM,
+        "_blank"
+    );
 
     startTimer(3);
 }
 
 
-/* =========================================
+/* ================================
    10 SECOND TIMER
-========================================= */
+================================ */
 
 function startTimer(step) {
 
     const verifyButton =
-        document.getElementById("verify" + step);
+        document.getElementById(
+            "verify" + step
+        );
 
     const timer =
-        document.getElementById("timer" + step);
+        document.getElementById(
+            "timer" + step
+        );
 
     let seconds = 10;
 
     verifyButton.disabled = true;
 
     verifyButton.innerHTML =
-        "⏳ Please wait...";
+        "Verify";
 
     timer.innerHTML =
-        "Please wait " + seconds + " seconds";
+        "Wait " + seconds + " seconds";
 
-    const interval = setInterval(function() {
+    const interval =
+        setInterval(function() {
 
-        seconds--;
+            seconds--;
 
-        if (seconds > 0) {
+            if (seconds > 0) {
 
-            timer.innerHTML =
-                "Please wait " + seconds + " seconds";
+                timer.innerHTML =
+                    "Wait " + seconds + " seconds";
 
-        } else {
+            } else {
 
-            clearInterval(interval);
+                clearInterval(interval);
 
-            timer.innerHTML =
-                "✅ Verification available";
+                timer.innerHTML = "";
 
-            verifyButton.disabled = false;
+                verifyButton.disabled = false;
 
-            verifyButton.innerHTML =
-                "✅ Verify Step " + step;
-        }
+                verifyButton.innerHTML =
+                    "Verify";
+            }
 
-    }, 1000);
+        }, 1000);
 }
 
 
-/* =========================================
+/* ================================
    VERIFY
-========================================= */
+================================ */
 
 function verifyTask(step) {
 
-    document.getElementById("status" + step).innerHTML =
-        "✅ Step " + step + " completed";
+    document
+        .getElementById(
+            "status" + step
+        )
+        .innerHTML =
+        "Completed";
 
-    document.getElementById("verify" + step).disabled = true;
-
-    document.getElementById("verify" + step).innerHTML =
-        "✅ Completed";
+    document
+        .getElementById(
+            "verify" + step
+        )
+        .disabled = true;
 
 
     /* STEP 1 → STEP 2 */
@@ -534,7 +567,8 @@ function verifyTask(step) {
 
         document
             .getElementById("card2")
-            .classList.remove("locked");
+            .classList
+            .remove("locked");
 
         document
             .getElementById("card2")
@@ -551,7 +585,8 @@ function verifyTask(step) {
 
         document
             .getElementById("card3")
-            .classList.remove("locked");
+            .classList
+            .remove("locked");
 
         document
             .getElementById("card3")
@@ -568,7 +603,8 @@ function verifyTask(step) {
 
         document
             .getElementById("passwordBox")
-            .style.display = "block";
+            .style.display =
+            "block";
 
         document
             .getElementById("passwordBox")
@@ -580,17 +616,21 @@ function verifyTask(step) {
 }
 
 
-/* =========================================
+/* ================================
    PASSWORD
-========================================= */
+================================ */
 
 function checkPassword() {
 
     const password =
-        document.getElementById("password").value;
+        document
+            .getElementById("password")
+            .value;
 
     const error =
-        document.getElementById("passwordError");
+        document
+            .getElementById("passwordError");
+
 
     if (password === "1640") {
 
@@ -598,11 +638,13 @@ function checkPassword() {
 
         document
             .getElementById("passwordBox")
-            .style.display = "none";
+            .style.display =
+            "none";
 
         document
             .getElementById("downloadBox")
-            .style.display = "block";
+            .style.display =
+            "block";
 
         document
             .getElementById("downloadBox")
@@ -614,27 +656,30 @@ function checkPassword() {
     } else {
 
         error.innerHTML =
-            "❌ Incorrect password";
+            "Incorrect password";
 
     }
 }
 
 
-/* =========================================
-   ENTER KEY FOR PASSWORD
-========================================= */
+/* ================================
+   ENTER KEY
+================================ */
 
 document
     .getElementById("password")
-    .addEventListener("keydown", function(event) {
+    .addEventListener(
+        "keydown",
+        function(event) {
 
-        if (event.key === "Enter") {
+            if (event.key === "Enter") {
 
-            checkPassword();
+                checkPassword();
+
+            }
 
         }
-
-    });
+    );
 
 </script>
 
