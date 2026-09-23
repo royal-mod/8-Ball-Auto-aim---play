@@ -109,14 +109,6 @@ button {
     cursor: not-allowed;
 }
 
-.timer {
-    text-align: center;
-    color: #ffc107;
-    font-size: 14px;
-    font-weight: bold;
-    margin-top: 12px;
-}
-
 .status {
     text-align: center;
     color: #00e676;
@@ -228,15 +220,10 @@ button {
         <button
             class="verifyBtn"
             id="verify1"
-            onclick="startVerification(1)"
+            onclick="completeStep(1)"
             disabled>
             Verify
         </button>
-
-        <div
-            class="timer"
-            id="timer1">
-        </div>
 
         <div
             class="status"
@@ -246,7 +233,7 @@ button {
     </div>
 
 
-    <!-- STEP 2 TELEGRAM -->
+    <!-- STEP 2 -->
 
     <div
         class="card locked"
@@ -271,15 +258,10 @@ button {
         <button
             class="verifyBtn"
             id="verify2"
-            onclick="startVerification(2)"
+            onclick="completeStep(2)"
             disabled>
             Verify
         </button>
-
-        <div
-            class="timer"
-            id="timer2">
-        </div>
 
         <div
             class="status"
@@ -289,7 +271,7 @@ button {
     </div>
 
 
-    <!-- STEP 3 INSTAGRAM -->
+    <!-- STEP 3 -->
 
     <div
         class="card locked"
@@ -314,15 +296,10 @@ button {
         <button
             class="verifyBtn"
             id="verify3"
-            onclick="startVerification(3)"
+            onclick="completeStep(3)"
             disabled>
             Verify
         </button>
-
-        <div
-            class="timer"
-            id="timer3">
-        </div>
 
         <div
             class="status"
@@ -398,9 +375,9 @@ button {
 
 <script>
 
-/* ==================================
+/* ================================
    LINKS
-================================== */
+================================ */
 
 const CHANNEL_1 =
 "https://www.youtube.com/@Royal_mod-89";
@@ -412,10 +389,9 @@ const INSTAGRAM =
 "https://www.instagram.com/royalmod_89/";
 
 
-/* ==================================
-   OPEN TASKS
-   TIMER DOES NOT START HERE
-================================== */
+/* ================================
+   OPEN TASK 1
+================================ */
 
 function openTask1() {
 
@@ -428,6 +404,10 @@ function openTask1() {
 }
 
 
+/* ================================
+   OPEN TASK 2
+================================ */
+
 function openTask2() {
 
     window.open(
@@ -438,6 +418,10 @@ function openTask2() {
     document.getElementById("verify2").disabled = false;
 }
 
+
+/* ================================
+   OPEN TASK 3
+================================ */
 
 function openTask3() {
 
@@ -450,69 +434,18 @@ function openTask3() {
 }
 
 
-/* ==================================
-   VERIFY → 10 SECOND TIMER
-================================== */
-
-function startVerification(step) {
-
-    const verifyButton =
-        document.getElementById("verify" + step);
-
-    const timer =
-        document.getElementById("timer" + step);
-
-    let seconds = 10;
-
-    verifyButton.disabled = true;
-
-    verifyButton.innerHTML =
-        "Verifying... 10s";
-
-    timer.innerHTML =
-        "Please wait 10 seconds";
-
-    const interval =
-        setInterval(function() {
-
-            seconds--;
-
-            if (seconds > 0) {
-
-                verifyButton.innerHTML =
-                    "Verifying... " + seconds + "s";
-
-                timer.innerHTML =
-                    "Please wait " + seconds + " seconds";
-
-            } else {
-
-                clearInterval(interval);
-
-                verifyButton.innerHTML =
-                    "Verify";
-
-                timer.innerHTML = "";
-
-                completeStep(step);
-
-            }
-
-        }, 1000);
-}
-
-
-/* ==================================
+/* ================================
    COMPLETE STEP
-================================== */
+================================ */
 
 function completeStep(step) {
 
     document
         .getElementById("status" + step)
-        .innerHTML =
-        "Completed";
+        .innerHTML = "Completed";
 
+
+    /* STEP 1 → STEP 2 */
 
     if (step === 1) {
 
@@ -530,6 +463,8 @@ function completeStep(step) {
     }
 
 
+    /* STEP 2 → STEP 3 */
+
     if (step === 2) {
 
         document
@@ -546,12 +481,13 @@ function completeStep(step) {
     }
 
 
+    /* STEP 3 → PASSWORD */
+
     if (step === 3) {
 
         document
             .getElementById("passwordBox")
-            .style.display =
-            "block";
+            .style.display = "block";
 
         document
             .getElementById("passwordBox")
@@ -563,9 +499,9 @@ function completeStep(step) {
 }
 
 
-/* ==================================
+/* ================================
    PASSWORD
-================================== */
+================================ */
 
 function checkPassword() {
 
@@ -585,13 +521,11 @@ function checkPassword() {
 
         document
             .getElementById("passwordBox")
-            .style.display =
-            "none";
+            .style.display = "none";
 
         document
             .getElementById("downloadBox")
-            .style.display =
-            "block";
+            .style.display = "block";
 
         document
             .getElementById("downloadBox")
@@ -604,14 +538,13 @@ function checkPassword() {
 
         error.innerHTML =
             "Incorrect password";
-
     }
 }
 
 
-/* ==================================
+/* ================================
    ENTER KEY
-================================== */
+================================ */
 
 document
     .getElementById("password")
