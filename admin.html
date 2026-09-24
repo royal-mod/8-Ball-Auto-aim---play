@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Royal Mod Admin</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #0b0b0b;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 450px;
+}
+
+.card {
+    background: #1c1c1c;
+    border: 1px solid #333;
+    border-radius: 20px;
+    padding: 30px 22px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #999;
+    margin-bottom: 25px;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid #444;
+    background: #0e0e0e;
+    color: white;
+    outline: none;
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: white;
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.error {
+    color: #ff5252;
+    margin-top: 10px;
+}
+
+.dashboard {
+    margin-top: 20px;
+}
+
+.download-box {
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 15px;
+    padding: 25px 15px;
+}
+
+.download-number {
+    font-size: 55px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.label {
+    color: #aaa;
+    font-size: 14px;
+}
+
+.refresh {
+    margin-top: 15px;
+    background: #333;
+    color: white;
+}
+
+.updated {
+    color: #777;
+    font-size: 12px;
+    margin-top: 12px;
+}
+
+.hidden {
+    display: none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- LOGIN -->
+
+    <div class="card" id="loginCard">
+
+        <h1>ROYAL MOD</h1>
+
+        <p class="subtitle">
+            Private Admin Panel
+        </p>
+
+        <input
+            type="password"
+            id="adminPassword"
+            placeholder="Admin password">
+
+        <button onclick="login()">
+            Login
+        </button>
+
+        <p id="error" class="error"></p>
+
+    </div>
+
+
+    <!-- DASHBOARD -->
+
+    <div class="card dashboard hidden" id="dashboard">
+
+        <h1>Download Statistics</h1>
+
+        <div class="download-box">
+
+            <div class="label">
+                TOTAL APK DOWNLOADS
+            </div>
+
+            <div
+                class="download-number"
+                id="downloadCount">
+                ...
+            </div>
+
+            <div class="label">
+                kEngine3.4.apk
+            </div>
+
+        </div>
+
+        <button
+            class="refresh"
+            onclick="getDownloads()">
+            ↻ Refresh
+        </button>
+
+        <p
+            class="updated"
+            id="updated">
+        </p>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/*
+========================================
+ADMIN PASSWORD
+========================================
+
+Yahan apna admin password change kar sakte ho.
+*/
+
+const ADMIN_PASSWORD = "ROYALADMIN1640";
+
+
+/*
+========================================
+GITHUB DETAILS
+========================================
+*/
+
+const OWNER = "royal-mod";
+
+const REPO = "8-Ball-Auto-aim---play";
+
+const RELEASE_TAG = "v1.0";
+
+const APK_NAME = "kEngine3.4.apk";
+
+
+/*
+========================================
+LOGIN
+========================================
+*/
+
+function login() {
+
+    const password =
+        document.getElementById("adminPassword").value;
+
+    if (password === ADMIN_PASSWORD) {
+
+        document
+            .getElementById("loginCard")
+            .classList.add("hidden");
+
+        document
+            .getElementById("dashboard")
+            .classList.remove("hidden");
+
+        getDownloads();
+
+    } else {
+
+        document
+            .getElementById("error")
+            .textContent =
+            "Wrong admin password!";
+    }
+}
+
+
+/*
+========================================
+GET DOWNLOAD COUNT
+========================================
+*/
+
+async function getDownloads() {
+
+    const countElement =
+        document.getElementById("downloadCount");
+
+    countElement.textContent = "...";
+
+    try {
+
+        const releaseURL =
+            `https://api.github.com/repos/${OWNER}/${REPO}/releases/tags/${RELEASE_TAG}`;
+
+        const response =
+            await fetch(releaseURL);
+
+        if (!response.ok) {
+            throw new Error("GitHub API error");
+        }
+
+        const release =
+            await response.json();
+
+
+        const asset =
+            release.assets.find(
+                item => item.name === APK_NAME
+            );
+
+
+        if (!asset) {
+
+            countElement.textContent = "0";
+
+            document.getElementById("updated")
+                .textContent =
+                "APK asset not found.";
+
+            return;
+        }
+
+
+        countElement.textContent =
+            asset.download_count;
+
+
+        const now =
+            new Date();
+
+        document.getElementById("updated")
+            .textContent =
+            "Last updated: " +
+            now.toLocaleString();
+
+    }
+
+    catch (error) {
+
+        countElement.textContent = "Error";
+
+        document.getElementById("updated")
+            .textContent =
+            "Unable to load download count.";
+
+        console.error(error);
+    }
+}
+
+</script>
+
+</body>
+</html>
