@@ -1,359 +1,307 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ROYAL MOD</title>
+    <title>ROYAL MOD - 8 Ball Pool</title>
 
-<style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background:
-        radial-gradient(circle at top, #24104a 0%, #090909 45%, #050505 100%);
-    color: white;
-    min-height: 100vh;
-}
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #080808, #1a1a1a, #080808);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
 
-.container {
-    width: 100%;
-    max-width: 620px;
-    margin: auto;
-    padding: 25px 16px 50px;
-}
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.08);
+        }
 
-.header {
-    text-align: center;
-    padding: 15px 0 28px;
-}
+        .logo {
+            width: 110px;
+            height: 110px;
+            object-fit: contain;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
 
-.logo {
-    width: 115px;
-    height: 115px;
-    object-fit: contain;
-    border-radius: 50%;
-    display: block;
-    margin: auto;
-    box-shadow: 0 0 30px rgba(160, 80, 255, 0.35);
-}
+        h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
 
-.header h1 {
-    margin-top: 15px;
-    font-size: 34px;
-    letter-spacing: 3px;
-}
+        .subtitle {
+            color: #aaa;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
 
-.header p {
-    color: #aaa;
-    margin-top: 8px;
-    font-size: 14px;
-}
+        .step {
+            background: #181818;
+            border: 1px solid #292929;
+            border-radius: 15px;
+            padding: 18px;
+            margin-bottom: 15px;
+            text-align: left;
+        }
 
-.card {
-    background: rgba(20,20,20,0.94);
-    border: 1px solid #303030;
-    border-radius: 18px;
-    padding: 22px;
-    margin-bottom: 18px;
-    box-shadow: 0 10px 35px rgba(0,0,0,0.25);
-}
+        .step h2 {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
 
-.card h2 {
-    font-size: 20px;
-    margin-bottom: 9px;
-}
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
 
-.card p {
-    color: #aaa;
-    font-size: 14px;
-    line-height: 1.55;
-    margin-bottom: 15px;
-}
+        button,
+        .downloadBtn {
+            border: none;
+            border-radius: 10px;
+            padding: 12px 15px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: 0.2s;
+        }
 
-.locked {
-    opacity: 0.42;
-    pointer-events: none;
-    filter: grayscale(0.5);
-}
+        .socialBtn {
+            background: white;
+            color: black;
+            flex: 1;
+        }
 
-button {
-    width: 100%;
-    border: 0;
-    border-radius: 11px;
-    padding: 14px;
-    margin-top: 8px;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-}
+        .verifyBtn {
+            background: #333;
+            color: white;
+            flex: 1;
+        }
 
-.taskBtn {
-    background: linear-gradient(135deg, #ff1744, #ff5252);
-    color: white;
-}
+        button:hover,
+        .downloadBtn:hover {
+            transform: scale(1.03);
+            opacity: 0.9;
+        }
 
-.verifyBtn {
-    background: #292929;
-    color: white;
-}
+        .locked {
+            opacity: 0.45;
+            pointer-events: none;
+        }
 
-.verifyBtn:disabled {
-    background: #181818;
-    color: #666;
-    cursor: not-allowed;
-}
+        .hidden {
+            display: none;
+        }
 
-.status {
-    text-align: center;
-    color: #00e676;
-    font-size: 14px;
-    font-weight: bold;
-    margin-top: 10px;
-}
+        .passwordBox {
+            margin-top: 20px;
+            background: #181818;
+            border: 1px solid #292929;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: left;
+        }
 
-.passwordBox {
-    display: none;
-}
+        .passwordBox h2 {
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
 
-.passwordInput {
-    width: 100%;
-    padding: 14px;
-    border-radius: 11px;
-    border: 1px solid #444;
-    background: #090909;
-    color: white;
-    font-size: 16px;
-    outline: none;
-}
+        input {
+            width: 100%;
+            padding: 13px;
+            border-radius: 10px;
+            border: 1px solid #444;
+            background: #0c0c0c;
+            color: white;
+            outline: none;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
 
-.passwordBtn {
-    background: linear-gradient(135deg, #7c4dff, #b44cff);
-    color: white;
-}
+        input:focus {
+            border-color: white;
+        }
 
-.error {
-    color: #ff5252;
-    text-align: center;
-    font-size: 14px;
-    margin-top: 10px;
-}
+        .unlockBtn {
+            width: 100%;
+            background: white;
+            color: black;
+        }
 
-.downloadBox {
-    display: none;
-    border-color: #00c853;
-}
+        .downloadBox {
+            margin-top: 20px;
+        }
 
-.downloadBtn {
-    display: block;
-    width: 100%;
-    padding: 15px;
-    margin-top: 10px;
-    border-radius: 11px;
-    background: linear-gradient(135deg, #00c853, #00a844);
-    color: white;
-    text-decoration: none;
-    text-align: center;
-    font-weight: bold;
-}
+        .downloadBtn {
+            display: block;
+            width: 100%;
+            background: #00c853;
+            color: white;
+            font-size: 18px;
+        }
 
-.footer {
-    text-align: center;
-    color: #666;
-    font-size: 12px;
-    margin-top: 30px;
-}
+        .message {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 13px;
+            color: #aaa;
+        }
 
-.stepNumber {
-    color: #ff4081;
-}
-</style>
+        .success {
+            color: #00e676;
+        }
+
+        .error {
+            color: #ff5252;
+        }
+
+        @media (max-width: 450px) {
+            .container {
+                padding: 25px 15px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
 <div class="container">
 
-    <!-- HEADER -->
+    <!-- LOGO -->
+    <img src="royal-mod.png" class="logo" alt="Royal Mod">
 
-    <div class="header">
+    <h1>ROYAL MOD</h1>
 
-        <img
-            src="royal-mod.png"
-            class="logo"
-            alt="ROYAL MOD">
-
-        <h1>ROYAL MOD</h1>
-
-        <p>
-            Complete all tasks to unlock your download
-        </p>
-
-    </div>
+    <p class="subtitle">
+        Complete the steps below to unlock the download.
+    </p>
 
 
     <!-- STEP 1 -->
+    <div class="step" id="step1">
 
-    <div class="card" id="card1">
+        <h2>YouTube</h2>
 
-        <h2>
-            <span class="stepNumber">STEP 1</span>
-            — YouTube
-        </h2>
+        <div class="buttons">
 
-        <p>
-            Subscribe to our YouTube channel.
-            After subscribing, return here and click Verify.
-        </p>
+            <button
+                class="socialBtn"
+                onclick="openYouTube()">
+                Subscribe
+            </button>
 
-        <button
-            class="taskBtn"
-            onclick="openTask1()">
-            Subscribe
-        </button>
+            <button
+                class="verifyBtn"
+                onclick="verifyStep1()">
+                Verify
+            </button>
 
-        <button
-            class="verifyBtn"
-            id="verify1"
-            onclick="completeStep(1)"
-            disabled>
-            Verify
-        </button>
-
-        <div
-            class="status"
-            id="status1">
         </div>
 
     </div>
 
 
     <!-- STEP 2 -->
+    <div class="step locked" id="step2">
 
-    <div
-        class="card locked"
-        id="card2">
+        <h2>Telegram</h2>
 
-        <h2>
-            <span class="stepNumber">STEP 2</span>
-            — Telegram
-        </h2>
+        <div class="buttons">
 
-        <p>
-            Join our Telegram channel.
-            After joining, return here and click Verify.
-        </p>
+            <button
+                class="socialBtn"
+                onclick="openTelegram()">
+                Join
+            </button>
 
-        <button
-            class="taskBtn"
-            onclick="openTask2()">
-            Join
-        </button>
+            <button
+                class="verifyBtn"
+                onclick="verifyStep2()">
+                Verify
+            </button>
 
-        <button
-            class="verifyBtn"
-            id="verify2"
-            onclick="completeStep(2)"
-            disabled>
-            Verify
-        </button>
-
-        <div
-            class="status"
-            id="status2">
         </div>
 
     </div>
 
 
     <!-- STEP 3 -->
+    <div class="step locked" id="step3">
 
-    <div
-        class="card locked"
-        id="card3">
+        <h2>Instagram</h2>
 
-        <h2>
-            <span class="stepNumber">STEP 3</span>
-            — Instagram
-        </h2>
+        <div class="buttons">
 
-        <p>
-            Follow ROYAL MOD on Instagram.
-            After following, return here and click Verify.
-        </p>
+            <button
+                class="socialBtn"
+                onclick="openInstagram()">
+                Follow
+            </button>
 
-        <button
-            class="taskBtn"
-            onclick="openTask3()">
-            Follow
-        </button>
+            <button
+                class="verifyBtn"
+                onclick="verifyStep3()">
+                Verify
+            </button>
 
-        <button
-            class="verifyBtn"
-            id="verify3"
-            onclick="completeStep(3)"
-            disabled>
-            Verify
-        </button>
-
-        <div
-            class="status"
-            id="status3">
         </div>
 
     </div>
 
 
     <!-- PASSWORD -->
+    <div class="passwordBox hidden" id="passwordBox">
 
-    <div
-        class="card passwordBox"
-        id="passwordBox">
-
-        <h2>Final Verification</h2>
-
-        <p>
-            All 3 tasks are completed.
-            Enter the password to unlock the download.
-        </p>
+        <h2>Enter Password</h2>
 
         <input
             type="password"
             id="password"
-            class="passwordInput"
-            placeholder="Enter password"
-            autocomplete="off">
+            placeholder="Enter password">
 
         <button
-            class="passwordBtn"
-            onclick="checkPassword()">
+            class="unlockBtn"
+            onclick="unlockDownload()">
             Unlock
         </button>
 
-        <div
-            class="error"
-            id="passwordError">
-        </div>
+        <p id="passwordMessage" class="message"></p>
 
     </div>
 
 
     <!-- DOWNLOAD -->
-
-    <div
-        class="card downloadBox"
-        id="downloadBox">
-
-        <h2>Download Unlocked</h2>
-
-        <p>
-            Your ROYAL MOD 8 Ball APK is ready.
-        </p>
+    <div class="downloadBox hidden" id="downloadBox">
 
         <a
             class="downloadBtn"
@@ -363,11 +311,10 @@ button {
             Download
         </a>
 
-    </div>
+        <p class="message success">
+            Your download is unlocked!
+        </p>
 
-
-    <div class="footer">
-        © 2026 ROYAL MOD
     </div>
 
 </div>
@@ -375,189 +322,111 @@ button {
 
 <script>
 
-/* ==================================
-   LINKS
-================================== */
+    /* =========================
+       SOCIAL LINKS
+    ========================= */
 
-const CHANNEL_1 =
-"https://www.youtube.com/@Royal_mod-89";
-
-const TELEGRAM =
-"https://t.me/royal_mod89";
-
-const INSTAGRAM =
-"https://www.instagram.com/royalmod_89/";
-
-
-/* ==================================
-   OPEN TASK 1
-================================== */
-
-function openTask1() {
-
-    window.open(
-        CHANNEL_1,
-        "_blank"
-    );
-
-    document.getElementById("verify1").disabled = false;
-}
-
-
-/* ==================================
-   OPEN TASK 2
-================================== */
-
-function openTask2() {
-
-    window.open(
-        TELEGRAM,
-        "_blank"
-    );
-
-    document.getElementById("verify2").disabled = false;
-}
-
-
-/* ==================================
-   OPEN TASK 3
-================================== */
-
-function openTask3() {
-
-    window.open(
-        INSTAGRAM,
-        "_blank"
-    );
-
-    document.getElementById("verify3").disabled = false;
-}
-
-
-/* ==================================
-   COMPLETE STEP
-================================== */
-
-function completeStep(step) {
-
-    document
-        .getElementById("status" + step)
-        .innerHTML = "Completed";
-
-
-    /* STEP 1 → STEP 2 */
-
-    if (step === 1) {
-
-        document
-            .getElementById("card2")
-            .classList
-            .remove("locked");
-
-        document
-            .getElementById("card2")
-            .scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
+    function openYouTube() {
+        window.open(
+            "https://www.youtube.com/@Royal_mod-89",
+            "_blank"
+        );
     }
 
 
-    /* STEP 2 → STEP 3 */
-
-    if (step === 2) {
-
-        document
-            .getElementById("card3")
-            .classList
-            .remove("locked");
-
-        document
-            .getElementById("card3")
-            .scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
+    function openTelegram() {
+        window.open(
+            "https://t.me/royal_mod89",
+            "_blank"
+        );
     }
 
 
-    /* STEP 3 → PASSWORD */
-
-    if (step === 3) {
-
-        document
-            .getElementById("passwordBox")
-            .style.display = "block";
-
-        document
-            .getElementById("passwordBox")
-            .scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
+    function openInstagram() {
+        window.open(
+            "https://www.instagram.com/royalmod_89/",
+            "_blank"
+        );
     }
-}
 
 
-/* ==================================
-   PASSWORD
-================================== */
+    /* =========================
+       STEP 1
+    ========================= */
 
-function checkPassword() {
+    function verifyStep1() {
 
-    const password =
-        document
-            .getElementById("password")
-            .value;
+        document.getElementById("step2")
+            .classList.remove("locked");
 
-    const error =
-        document
-            .getElementById("passwordError");
+        alert("Step 1 verified!");
 
-
-    if (password === "1640") {
-
-        error.innerHTML = "";
-
-        document
-            .getElementById("passwordBox")
-            .style.display = "none";
-
-        document
-            .getElementById("downloadBox")
-            .style.display = "block";
-
-        document
-            .getElementById("downloadBox")
-            .scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
-
-    } else {
-
-        error.innerHTML =
-            "Incorrect password";
     }
-}
 
 
-/* ==================================
-   ENTER KEY
-================================== */
+    /* =========================
+       STEP 2
+    ========================= */
 
-document
-    .getElementById("password")
-    .addEventListener(
-        "keydown",
-        function(event) {
+    function verifyStep2() {
 
-            if (event.key === "Enter") {
-                checkPassword();
-            }
+        document.getElementById("step3")
+            .classList.remove("locked");
+
+        alert("Step 2 verified!");
+
+    }
+
+
+    /* =========================
+       STEP 3
+    ========================= */
+
+    function verifyStep3() {
+
+        document.getElementById("passwordBox")
+            .classList.remove("hidden");
+
+        alert("Step 3 verified!");
+
+    }
+
+
+    /* =========================
+       PASSWORD
+    ========================= */
+
+    function unlockDownload() {
+
+        const password =
+            document.getElementById("password").value;
+
+        const message =
+            document.getElementById("passwordMessage");
+
+
+        if (password === "1640") {
+
+            document.getElementById("downloadBox")
+                .classList.remove("hidden");
+
+            message.textContent =
+                "Password correct!";
+
+            message.className =
+                "message success";
+
+        } else {
+
+            message.textContent =
+                "Wrong password!";
+
+            message.className =
+                "message error";
 
         }
-    );
+
+    }
 
 </script>
 
