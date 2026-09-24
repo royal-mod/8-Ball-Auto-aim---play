@@ -48,12 +48,9 @@ h1 {
     margin-bottom: 25px;
 }
 
-
-/* =========================
-   STEP CARD
-========================= */
-
-.step-card {
+.step-card,
+.password-card,
+.download-card {
     background: #222;
     border: 1px solid #3a3a3a;
     border-radius: 20px;
@@ -88,11 +85,6 @@ h1 {
     line-height: 1.5;
 }
 
-
-/* =========================
-   BUTTONS
-========================= */
-
 .open-btn,
 .confirm-btn {
     width: 100%;
@@ -102,7 +94,6 @@ h1 {
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.2s;
 }
 
 .open-btn {
@@ -113,7 +104,6 @@ h1 {
 
 .open-btn:hover {
     background: #e91520;
-    transform: scale(1.01);
 }
 
 .confirm-btn {
@@ -123,43 +113,23 @@ h1 {
 }
 
 .confirm-btn.active {
-    background: #ffffff;
+    background: white;
     color: #111;
     cursor: pointer;
 }
-
-.confirm-btn.active:hover {
-    transform: scale(1.01);
-}
-
-
-/* =========================
-   HIDDEN
-========================= */
 
 .hidden {
     display: none !important;
 }
 
-
-/* =========================
-   PASSWORD
-========================= */
-
-.password-card {
-    background: #222;
-    border: 1px solid #3a3a3a;
-    border-radius: 20px;
-    padding: 25px 21px;
-    margin-top: 18px;
-}
-
-.password-card h2 {
+.password-card h2,
+.download-card h2 {
     font-size: 22px;
     margin-bottom: 8px;
 }
 
-.password-card p {
+.password-card p,
+.download-card p {
     color: #aaa;
     font-size: 14px;
     margin-bottom: 18px;
@@ -177,10 +147,6 @@ input {
     margin-bottom: 10px;
 }
 
-input:focus {
-    border-color: #fff;
-}
-
 .unlock-btn {
     width: 100%;
     padding: 14px;
@@ -191,29 +157,6 @@ input:focus {
     font-weight: bold;
     font-size: 15px;
     cursor: pointer;
-}
-
-
-/* =========================
-   DOWNLOAD
-========================= */
-
-.download-card {
-    background: #222;
-    border: 1px solid #3a3a3a;
-    border-radius: 20px;
-    padding: 25px 21px;
-    margin-top: 18px;
-}
-
-.download-card h2 {
-    margin-bottom: 8px;
-}
-
-.download-card p {
-    color: #aaa;
-    font-size: 14px;
-    margin-bottom: 18px;
 }
 
 .download-btn {
@@ -240,44 +183,13 @@ input:focus {
 .success {
     color: #00e676;
 }
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 480px) {
-
-    body {
-        padding: 20px 12px;
-    }
-
-    .logo {
-        width: 90px;
-        height: 90px;
-    }
-
-    h1 {
-        font-size: 27px;
-    }
-
-    .step-title {
-        font-size: 20px;
-    }
-
-    .step-card {
-        padding: 23px 17px;
-    }
-}
 </style>
 </head>
-
 
 <body>
 
 <div class="container">
 
-    <!-- LOGO -->
     <img src="royal-mod.png" class="logo" alt="ROYAL MOD">
 
     <h1>ROYAL MOD</h1>
@@ -287,9 +199,7 @@ input:focus {
     </p>
 
 
-    <!-- =================================
-         STEP 1 - YOUTUBE
-    ================================== -->
+    <!-- STEP 1 -->
 
     <div class="step-card" id="step1">
 
@@ -320,9 +230,7 @@ input:focus {
     </div>
 
 
-    <!-- =================================
-         STEP 2 - TELEGRAM
-    ================================== -->
+    <!-- STEP 2 -->
 
     <div class="step-card hidden" id="step2">
 
@@ -353,9 +261,7 @@ input:focus {
     </div>
 
 
-    <!-- =================================
-         STEP 3 - INSTAGRAM
-    ================================== -->
+    <!-- STEP 3 -->
 
     <div class="step-card hidden" id="step3">
 
@@ -386,9 +292,7 @@ input:focus {
     </div>
 
 
-    <!-- =================================
-         PASSWORD
-    ================================== -->
+    <!-- PASSWORD -->
 
     <div class="password-card hidden" id="passwordCard">
 
@@ -409,17 +313,12 @@ input:focus {
             Unlock
         </button>
 
-        <div
-            id="passwordMessage"
-            class="message">
-        </div>
+        <div id="passwordMessage" class="message"></div>
 
     </div>
 
 
-    <!-- =================================
-         DOWNLOAD
-    ================================== -->
+    <!-- DOWNLOAD -->
 
     <div class="download-card hidden" id="downloadCard">
 
@@ -437,20 +336,12 @@ input:focus {
             ⬇ DOWNLOAD APK
         </a>
 
-        <p class="message success">
-            Download unlocked successfully!
-        </p>
-
     </div>
 
 </div>
 
 
 <script>
-
-/* =================================
-   YOUTUBE
-================================= */
 
 function openYouTube() {
 
@@ -459,7 +350,6 @@ function openYouTube() {
         "_blank"
     );
 
-    // Activate confirmation button
     document
         .getElementById("youtubeConfirm")
         .classList.add("active");
@@ -468,26 +358,15 @@ function openYouTube() {
 
 function confirmYouTube() {
 
-    // Hide YouTube
     document
         .getElementById("step1")
         .classList.add("hidden");
 
-    // Show Telegram
     document
         .getElementById("step2")
         .classList.remove("hidden");
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
 }
 
-
-/* =================================
-   TELEGRAM
-================================= */
 
 function openTelegram() {
 
@@ -496,7 +375,6 @@ function openTelegram() {
         "_blank"
     );
 
-    // Activate confirmation button
     document
         .getElementById("telegramConfirm")
         .classList.add("active");
@@ -505,26 +383,15 @@ function openTelegram() {
 
 function confirmTelegram() {
 
-    // Hide Telegram
     document
         .getElementById("step2")
         .classList.add("hidden");
 
-    // Show Instagram
     document
         .getElementById("step3")
         .classList.remove("hidden");
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
 }
 
-
-/* =================================
-   INSTAGRAM
-================================= */
 
 function openInstagram() {
 
@@ -533,7 +400,6 @@ function openInstagram() {
         "_blank"
     );
 
-    // Activate confirmation button
     document
         .getElementById("instagramConfirm")
         .classList.add("active");
@@ -542,26 +408,15 @@ function openInstagram() {
 
 function confirmInstagram() {
 
-    // Hide Instagram
     document
         .getElementById("step3")
         .classList.add("hidden");
 
-    // Show password
     document
         .getElementById("passwordCard")
         .classList.remove("hidden");
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
 }
 
-
-/* =================================
-   PASSWORD
-================================= */
 
 function unlockDownload() {
 
@@ -571,26 +426,19 @@ function unlockDownload() {
     const message =
         document.getElementById("passwordMessage");
 
-
     if (password === "1640") {
 
         document
             .getElementById("downloadCard")
             .classList.remove("hidden");
 
-        message.textContent =
-            "Password correct!";
-
-        message.className =
-            "message success";
+        message.textContent = "Password correct!";
+        message.className = "message success";
 
     } else {
 
-        message.textContent =
-            "Wrong password!";
-
-        message.className =
-            "message error";
+        message.textContent = "Wrong password!";
+        message.className = "message error";
     }
 }
 
