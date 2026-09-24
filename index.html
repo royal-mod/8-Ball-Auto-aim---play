@@ -32,15 +32,15 @@
             border-radius: 20px;
             padding: 30px 20px;
             text-align: center;
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 30px rgba(255,255,255,0.08);
         }
 
         .logo {
-            width: 110px;
-            height: 110px;
+            width: 100px;
+            height: 100px;
             object-fit: contain;
             border-radius: 50%;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         h1 {
@@ -51,8 +51,8 @@
 
         .subtitle {
             color: #aaa;
-            margin-bottom: 25px;
             font-size: 14px;
+            margin-bottom: 25px;
         }
 
         .step {
@@ -66,7 +66,7 @@
 
         .step h2 {
             font-size: 18px;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .buttons {
@@ -74,44 +74,34 @@
             gap: 10px;
         }
 
-        button,
-        .downloadBtn {
+        button {
             border: none;
             border-radius: 10px;
             padding: 12px 15px;
             font-size: 15px;
             font-weight: bold;
             cursor: pointer;
-            text-decoration: none;
-            text-align: center;
             transition: 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.02);
         }
 
         .socialBtn {
             background: white;
             color: black;
-            flex: 1;
+            width: 100%;
         }
 
         .verifyBtn {
             background: #333;
             color: white;
-            flex: 1;
-        }
-
-        button:hover,
-        .downloadBtn:hover {
-            transform: scale(1.03);
-            opacity: 0.9;
-        }
-
-        .locked {
-            opacity: 0.45;
-            pointer-events: none;
+            width: 100%;
         }
 
         .hidden {
-            display: none;
+            display: none !important;
         }
 
         .passwordBox {
@@ -159,14 +149,18 @@
             width: 100%;
             background: #00c853;
             color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 14px;
             font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
         }
 
         .message {
             text-align: center;
             margin-top: 10px;
             font-size: 13px;
-            color: #aaa;
         }
 
         .success {
@@ -184,10 +178,6 @@
 
             h1 {
                 font-size: 26px;
-            }
-
-            .buttons {
-                flex-direction: column;
             }
         }
     </style>
@@ -207,79 +197,91 @@
     </p>
 
 
-    <!-- STEP 1 -->
+    <!-- =========================
+         STEP 1 - YOUTUBE
+    ========================== -->
+
     <div class="step" id="step1">
 
         <h2>YouTube</h2>
 
-        <div class="buttons">
+        <!-- Initially only Subscribe is visible -->
+        <button
+            id="subscribeBtn"
+            class="socialBtn"
+            onclick="subscribeClicked()">
+            Subscribe
+        </button>
 
-            <button
-                class="socialBtn"
-                onclick="openYouTube()">
-                Subscribe
-            </button>
-
-            <button
-                class="verifyBtn"
-                onclick="verifyStep1()">
-                Verify
-            </button>
-
-        </div>
+        <!-- Verify appears after Subscribe -->
+        <button
+            id="verify1Btn"
+            class="verifyBtn hidden"
+            onclick="verifyStep1()">
+            Verify
+        </button>
 
     </div>
 
 
-    <!-- STEP 2 -->
-    <div class="step locked" id="step2">
+    <!-- =========================
+         STEP 2 - TELEGRAM
+    ========================== -->
+
+    <div class="step hidden" id="step2">
 
         <h2>Telegram</h2>
 
-        <div class="buttons">
+        <!-- Initially hidden -->
+        <button
+            id="joinBtn"
+            class="socialBtn"
+            onclick="joinClicked()">
+            Join
+        </button>
 
-            <button
-                class="socialBtn"
-                onclick="openTelegram()">
-                Join
-            </button>
-
-            <button
-                class="verifyBtn"
-                onclick="verifyStep2()">
-                Verify
-            </button>
-
-        </div>
+        <!-- Appears after Join -->
+        <button
+            id="verify2Btn"
+            class="verifyBtn hidden"
+            onclick="verifyStep2()">
+            Verify
+        </button>
 
     </div>
 
 
-    <!-- STEP 3 -->
-    <div class="step locked" id="step3">
+    <!-- =========================
+         STEP 3 - INSTAGRAM
+    ========================== -->
+
+    <div class="step hidden" id="step3">
 
         <h2>Instagram</h2>
 
-        <div class="buttons">
+        <!-- Initially hidden -->
+        <button
+            id="followBtn"
+            class="socialBtn"
+            onclick="followClicked()">
+            Follow
+        </button>
 
-            <button
-                class="socialBtn"
-                onclick="openInstagram()">
-                Follow
-            </button>
-
-            <button
-                class="verifyBtn"
-                onclick="verifyStep3()">
-                Verify
-            </button>
-
-        </div>
+        <!-- Appears after Follow -->
+        <button
+            id="verify3Btn"
+            class="verifyBtn hidden"
+            onclick="verifyStep3()">
+            Verify
+        </button>
 
     </div>
 
 
-    <!-- PASSWORD -->
+    <!-- =========================
+         PASSWORD
+    ========================== -->
+
     <div class="passwordBox hidden" id="passwordBox">
 
         <h2>Enter Password</h2>
@@ -300,7 +302,10 @@
     </div>
 
 
-    <!-- DOWNLOAD -->
+    <!-- =========================
+         DOWNLOAD
+    ========================== -->
+
     <div class="downloadBox hidden" id="downloadBox">
 
         <a
@@ -322,79 +327,120 @@
 
 <script>
 
-    /* =========================
-       SOCIAL LINKS
-    ========================= */
+    /* =================================
+       STEP 1 - SUBSCRIBE
+    ================================= */
 
-    function openYouTube() {
+    function subscribeClicked() {
+
         window.open(
             "https://www.youtube.com/@Royal_mod-89",
             "_blank"
         );
+
+        // Show Verify button
+        document.getElementById("verify1Btn")
+            .classList.remove("hidden");
+
+        // Hide Subscribe button
+        document.getElementById("subscribeBtn")
+            .classList.add("hidden");
     }
 
 
-    function openTelegram() {
+    /* =================================
+       STEP 1 - VERIFY
+    ================================= */
+
+    function verifyStep1() {
+
+        // Hide Step 1
+        document.getElementById("step1")
+            .classList.add("hidden");
+
+        // Show Step 2
+        document.getElementById("step2")
+            .classList.remove("hidden");
+    }
+
+
+    /* =================================
+       STEP 2 - JOIN
+    ================================= */
+
+    function joinClicked() {
+
         window.open(
             "https://t.me/royal_mod89",
             "_blank"
         );
+
+        // Show Verify button
+        document.getElementById("verify2Btn")
+            .classList.remove("hidden");
+
+        // Hide Join button
+        document.getElementById("joinBtn")
+            .classList.add("hidden");
     }
 
 
-    function openInstagram() {
+    /* =================================
+       STEP 2 - VERIFY
+    ================================= */
+
+    function verifyStep2() {
+
+        // Hide Step 2
+        document.getElementById("step2")
+            .classList.add("hidden");
+
+        // Show Step 3
+        document.getElementById("step3")
+            .classList.remove("hidden");
+    }
+
+
+    /* =================================
+       STEP 3 - FOLLOW
+    ================================= */
+
+    function followClicked() {
+
         window.open(
             "https://www.instagram.com/royalmod_89/",
             "_blank"
         );
+
+        // Show Verify button
+        document.getElementById("verify3Btn")
+            .classList.remove("hidden");
+
+        // Hide Follow button
+        document.getElementById("followBtn")
+            .classList.add("hidden");
     }
 
 
-    /* =========================
-       STEP 1
-    ========================= */
-
-    function verifyStep1() {
-
-        document.getElementById("step2")
-            .classList.remove("locked");
-
-        alert("Step 1 verified!");
-
-    }
-
-
-    /* =========================
-       STEP 2
-    ========================= */
-
-    function verifyStep2() {
-
-        document.getElementById("step3")
-            .classList.remove("locked");
-
-        alert("Step 2 verified!");
-
-    }
-
-
-    /* =========================
-       STEP 3
-    ========================= */
+    /* =================================
+       STEP 3 - VERIFY
+    ================================= */
 
     function verifyStep3() {
 
+        // Hide Step 3
+        document.getElementById("step3")
+            .classList.add("hidden");
+
+        // Show Password
         document.getElementById("passwordBox")
             .classList.remove("hidden");
-
-        alert("Step 3 verified!");
-
     }
 
 
-    /* =========================
+    /* =================================
        PASSWORD
-    ========================= */
+    ================================= */
 
     function unlockDownload() {
 
@@ -407,6 +453,7 @@
 
         if (password === "1640") {
 
+            // Show download
             document.getElementById("downloadBox")
                 .classList.remove("hidden");
 
@@ -423,9 +470,7 @@
 
             message.className =
                 "message error";
-
         }
-
     }
 
 </script>
